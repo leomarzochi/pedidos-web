@@ -11,14 +11,7 @@ Vue.use(Vuetify)
 
 Vue.config.productionTip = false
 
-var config = {
-  apiKey: 'AIzaSyDVZm0B-6K4TlVbTPKX75dXBHZgLoWqfPs',
-  authDomain: 'pedidos-web-a7288.firebaseapp.com',
-  databaseURL: 'https://pedidos-web-a7288.firebaseio.com',
-  projectId: 'pedidos-web-a7288',
-  storageBucket: 'pedidos-web-a7288.appspot.com',
-  messagingSenderId: '473217494434'
-}
+var config = require('./modules/firebase.js') // Cria um modulo e importa aqui
 firebase.initializeApp(config)
 
 /* eslint-disable no-new */
