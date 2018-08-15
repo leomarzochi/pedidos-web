@@ -6,6 +6,8 @@ import router from './router'
 import Vuetify from 'vuetify'
 import 'vuetify/dist/vuetify.min.css'
 import firebase from 'firebase'
+import { sync } from 'vuex-router-sync'
+import store from './store/store'
 
 Vue.use(Vuetify)
 
@@ -14,10 +16,13 @@ Vue.config.productionTip = false
 var config = require('./modules/firebase.js') // Cria um modulo e importa aqui
 firebase.initializeApp(config)
 
+sync(store, router)
+
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
   router,
+  store,
   components: {
     App
   },

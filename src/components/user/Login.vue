@@ -39,15 +39,14 @@ export default {
   },
   methods: {
     async userLogin () {
-      console.log(this.email, this.password)
-      firebase.auth().signInWithEmailAndPassword(this.email, this.password)
-        .then(function (user) {
-          console.log(user)
-          alert('Success')
-        })
-        .catch(function (err) {
-          alert(err.message)
-        })
+      try {
+        const resposta = await firebase.auth().signInWithEmailAndPassword(this.email, this.password)
+        console.log(resposta.user.uid)
+        this.$store.dispatch('setUid', resposta.user.uid)
+        this.$store.dispatch('setEmail', resposta.user.email)
+      } catch (err) {
+        alert(err.message)
+      }
     }
   }
 }
