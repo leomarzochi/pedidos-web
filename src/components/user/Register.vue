@@ -4,8 +4,8 @@
             <v-container fluid fill-height>
                 <v-layout align-center justify-center>
                     <v-flex xs12 sm8 md6>
-                        <v-card class="elevation-3">
-                            <v-toolbar dark color="cyan">
+                        <v-card class="elevation-2">
+                            <v-toolbar dark flat color="cyan">
                                 <v-toolbar-title>Criar uma nova conta</v-toolbar-title>
                             </v-toolbar>
                             <v-spacer></v-spacer>
