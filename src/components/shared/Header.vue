@@ -1,5 +1,5 @@
 <template>
-  <v-toolbar dark color="cyan" fixed="top">
+  <v-toolbar dark color="primary" fixed="top">
     <v-toolbar-side-icon></v-toolbar-side-icon>
     <v-toolbar-title class="white--text">
       <v-btn icon to="/">

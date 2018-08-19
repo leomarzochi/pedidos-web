@@ -1,74 +1,68 @@
 <template>
-  <v-layout row justify-center>
-    <v-dialog v-model="dialog" fullscreen hide-overlay transition="dialog-bottom-transition">
-      <v-btn slot="activator" color="primary" dark>Novo Produto</v-btn>
+  <div class="text-xs-center">
+    <v-dialog v-model="dialog" width="500">
+      <v-btn slot="activator" color="red lighten-2" dark>
+        Click Me
+      </v-btn>
       <v-card>
-        <v-toolbar dark color="primary">
-          <v-btn icon dark @click.native="dialog = false">
-            <v-icon>close</v-icon>
-          </v-btn>
-          <v-toolbar-title>Settings</v-toolbar-title>
-          <v-spacer></v-spacer>
-          <v-toolbar-items>
-            <v-btn dark flat @click.native="dialog = false">Salvar</v-btn>
-          </v-toolbar-items>
-        </v-toolbar>
-        <v-list three-line subheader>
-          <v-subheader>User Controls</v-subheader>
-          <v-list-tile avatar>
-            <v-list-tile-content>
-              <v-list-tile-title>Content filtering</v-list-tile-title>
-              <v-list-tile-sub-title>Set the content filtering level to restrict apps that can be downloaded</v-list-tile-sub-title>
-            </v-list-tile-content>
-          </v-list-tile>
-          <v-list-tile avatar>
-            <v-list-tile-content>
-              <v-list-tile-title>Password</v-list-tile-title>
-              <v-list-tile-sub-title>Require password for purchase or use password to restrict purchase</v-list-tile-sub-title>
-            </v-list-tile-content>
-          </v-list-tile>
-        </v-list>
+        <v-card-title class="headline grey lighten-2" primary-title>
+          Adicionar novo produto
+        </v-card-title>
         <v-divider></v-divider>
-        <v-list three-line subheader>
-          <v-subheader>General</v-subheader>
-          <v-list-tile avatar>
-            <v-list-tile-action>
-              <v-checkbox v-model="notifications"></v-checkbox>
-            </v-list-tile-action>
-            <v-list-tile-content>
-              <v-list-tile-title>Notifications</v-list-tile-title>
-              <v-list-tile-sub-title>Notify me about updates to apps or games that I downloaded</v-list-tile-sub-title>
-            </v-list-tile-content>
-          </v-list-tile>
-          <v-list-tile avatar>
-            <v-list-tile-action>
-              <v-checkbox v-model="sound"></v-checkbox>
-            </v-list-tile-action>
-            <v-list-tile-content>
-              <v-list-tile-title>Sound</v-list-tile-title>
-              <v-list-tile-sub-title>Auto-update apps at any time. Data charges may apply</v-list-tile-sub-title>
-            </v-list-tile-content>
-          </v-list-tile>
-          <v-list-tile avatar>
-            <v-list-tile-action>
-              <v-checkbox v-model="widgets"></v-checkbox>
-            </v-list-tile-action>
-            <v-list-tile-content>
-              <v-list-tile-title>Auto-add widgets</v-list-tile-title>
-              <v-list-tile-sub-title>Automatically add home screen widgets</v-list-tile-sub-title>
-            </v-list-tile-content>
-          </v-list-tile>
-        </v-list>
+        <v-content>
+          <v-container>
+              <v-form>
+                  <v-text-field label="Código" v-model="produtos.codigo"></v-text-field>
+                </v-form>
+                <v-form>
+                  <v-text-field label="Nome" v-model="produtos.nome"></v-text-field>
+                </v-form>
+                <v-form>
+                  <v-text-field label="Preço" v-model="produtos.preco"></v-text-field>
+                </v-form>
+                <v-form>
+                  <v-text-field label="Informações adicionais" type="text" v-model="produtos.info"></v-text-field>
+                </v-form>
+          </v-container>
+        </v-content>
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn color="primary" @click.prevent="salvarProduto">
+            Salvar
+          </v-btn>
+        </v-card-actions>
       </v-card>
     </v-dialog>
-  </v-layout>
+  </div>
 </template>
+
 <script>
+
+import axios from 'axios'
+
 export default {
   data () {
     return {
-      dialog: false
+      produtos: {
+        codigo: null,
+        preco: null,
+        nome: null,
+        info: null
+      }
     }
-  }
+  },
+  methods: {
+    async salvarProduto () {
+      try {
+        await axios.post('https://pedidos-web-a7288.firebaseio.com/produtos.json', this.produtos)
+      } catch (error) {
+        console.error(error)
+      }
+      this.dialog = false
+      this.$emit('fecharModal', this.dialog = false)
+    }
+  },
+  props: ['dialog']
 }
+
 </script>

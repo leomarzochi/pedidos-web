@@ -6,14 +6,21 @@ import router from './router'
 import Vuetify from 'vuetify'
 import 'vuetify/dist/vuetify.min.css'
 import firebase from 'firebase'
+import VueFire from 'vuefire'
 import { sync } from 'vuex-router-sync'
 import store from './store/store'
+import Axios from 'axios'
+// import './../node_modules/bulma/css/bulma.css'
 
 Vue.use(Vuetify)
+Vue.use(VueFire)
+Vue.use(Axios)
+// require('./assets/main.scss')
 
 Vue.config.productionTip = false
 
 var config = require('./modules/firebase.js') // Cria um modulo e importa aqui
+
 firebase.initializeApp(config)
 
 sync(store, router)

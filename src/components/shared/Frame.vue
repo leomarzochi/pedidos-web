@@ -3,12 +3,16 @@
         <v-content>
             <v-container fluid fill-height>
                 <v-layout align-center justify-center>
-                    <v-flex xs12>
-                        <v-card class="elevation-3">
-                            <v-toolbar dark flat color="blue">
-                                <v-toolbar-title >SLOT</v-toolbar-title>
+                    <v-flex xs12 md8>
+                        <v-card class="elevation-2">
+                            <v-toolbar dark flat color="primary">
+                                <v-toolbar-title>
+                                    <slot name="title"></slot>
+                                </v-toolbar-title>
+                                <v-spacer></v-spacer>
+                                <slot name="button"></slot>
                             </v-toolbar>
-                            <p>content</p>
+                            <slot name="content">slot name content</slot>
                         </v-card>
                     </v-flex>
                 </v-layout>
