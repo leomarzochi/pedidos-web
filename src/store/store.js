@@ -8,7 +8,9 @@ export default new Vuex.Store({
   state: {
     email: null,
     uid: null,
-    isUserLogedIn: false
+    isUserLogedIn: false,
+    dialog: false,
+    produtos: []
   },
   mutations: {
     setUid (state, uid) {
@@ -21,6 +23,12 @@ export default new Vuex.Store({
     },
     setEmail (state, email) {
       state.email = email
+    },
+    setDialog (state, dialog) {
+      state.dialog = dialog
+    },
+    setProdutos (state, produtos) {
+      state.produtos = produtos
     }
   },
   actions: {
@@ -29,6 +37,9 @@ export default new Vuex.Store({
     },
     setEmail ({commit}, email) {
       commit('setEmail', email)
+    },
+    setDialog ({commit}, dialog) {
+      commit('setDialog', dialog)
     }
   }
 })

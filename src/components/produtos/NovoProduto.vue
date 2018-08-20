@@ -1,9 +1,9 @@
 <template>
   <div class="text-xs-center">
     <v-dialog v-model="dialog" width="500">
-      <v-btn slot="activator" color="red lighten-2" dark>
+      <!-- <v-btn slot="activator" color="red lighten-2" dark>
         Click Me
-      </v-btn>
+      </v-btn> -->
       <v-card>
         <v-card-title class="headline grey lighten-2" primary-title>
           Adicionar novo produto
@@ -48,21 +48,21 @@ export default {
         preco: null,
         nome: null,
         info: null
-      }
+      },
+      uid: this.$store.state.uid,
+      dialog: this.$store.state.dialog
     }
   },
   methods: {
     async salvarProduto () {
       try {
-        await axios.post('https://pedidos-web-a7288.firebaseio.com/produtos.json', this.produtos)
+        await axios.post('https://pedidos-web-a7288.firebaseio.com/' + this.uid + '/produtos.json', this.produtos)
       } catch (error) {
         console.error(error)
       }
-      this.dialog = false
-      this.$emit('fecharModal', this.dialog = false)
+      this.produtos = {}
     }
-  },
-  props: ['dialog']
+  }
 }
 
 </script>

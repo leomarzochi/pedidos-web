@@ -5,7 +5,7 @@
           <v-container fluid wrap>
             <v-frame>
               <template slot="title">
-                <h1>Produtos</h1>
+                <h1>Pedidos</h1>
               </template>
               <template slot="button">
                 <v-btn
@@ -17,12 +17,8 @@
                 </v-btn>
               </template>
               <template slot="content">
-                <div v-for="produto in stateProdutos" :key="produto.id">
-                  <p>{{produto}}</p>
-                </div>
               </template>
             </v-frame>
-            <novoProduto></novoProduto>
           </v-container>
         </v-content>
       </v-app>
@@ -31,7 +27,6 @@
 
 <script>
 import axios from 'axios'
-import NovoProduto from './NovoProduto'
 import Frame from './../shared/Frame'
 export default {
   data () {
@@ -48,7 +43,6 @@ export default {
     }
   },
   components: {
-    NovoProduto,
     'v-frame': Frame
   },
   created () {

@@ -4,6 +4,7 @@ import HelloWorld from '@/components/HelloWorld'
 import Register from './../components/user/Register'
 import Login from './../components/user/Login'
 import Produtos from './../components/produtos/Produtos'
+import Pedidos from './../components/pedidos/Pedidos'
 
 Vue.use(Router)
 
@@ -28,6 +29,11 @@ export default new Router({
       path: '/produtos',
       name: 'Produtos',
       component: Produtos
+    },
+    {
+      path: '/pedidos',
+      name: 'Pedidos',
+      component: Pedidos
     }
   ]
 })
